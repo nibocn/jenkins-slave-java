@@ -28,6 +28,8 @@ RUN \
     && rm -rf /var/cache/apk/* \
     && rm -rf /opt/gradle-${GRADLE_VERSION}-bin.zip
 
+VOLUME /root/.gradle
+VOLUME /root/.m2
 
 ENV MAVEN_HOME /opt/maven
 ENV GRADLE_HOME /opt/gradle
