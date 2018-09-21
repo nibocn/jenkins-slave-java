@@ -7,7 +7,7 @@ ARG GRADLE_VERSION=4.10.2
 
 RUN \
     # Install tools
-    apk add --no-cache --update-cache curl unzip \
+    apk add --no-cache --update-cache curl unzip git \
         \
     # Install Maven
     && mkdir -p /opt/maven \
