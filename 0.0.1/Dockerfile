@@ -7,7 +7,8 @@ ARG GRADLE_VERSION=4.10.2
 
 RUN \
     # Install tools
-    apk add --no-cache --update-cache curl unzip git \
+    yum makecache fast \
+    && yum install -y unzip git \
         \
     # Install Maven
     && mkdir -p /opt/maven \
@@ -19,14 +20,15 @@ RUN \
     && cd /opt \
     && curl -OL https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip \
     && unzip gradle-${GRADLE_VERSION}-bin.zip \
+    && rm -rf /opt/gradle-${GRADLE_VERSION}-bin.zip \
     && ln -s /opt/gradle* /opt/gradle \
     && ln -s /opt/gradle/bin/gradle /usr/bin/gradle \
         \
     # Clean resource
-    && apk del curl unzip \
+    && yum remove -y unzip \
+    && yum clean all \
     && rm -rf /tmp/* \
-    && rm -rf /var/cache/apk/* \
-    && rm -rf /opt/gradle-${GRADLE_VERSION}-bin.zip
+    rm -rf /var/cache/yum/*
 
 VOLUME /root/.gradle
 VOLUME /root/.m2
