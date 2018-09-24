@@ -10,6 +10,12 @@ RUN \
     yum makecache fast \
     && yum install -y unzip git \
         \
+    # Install Docker
+    && yum install -y yum-utils \
+    && yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
+    && yum makecache fast \
+    && yum install -y docker-ce \
+        \
     # Install Maven
     && mkdir -p /opt/maven \
     && curl -fsSL http://apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
