@@ -39,6 +39,7 @@ RUN \
 VOLUME /root/.gradle
 VOLUME /root/.m2
 
+ENV LANG en_US.UTF-8
 ENV MAVEN_HOME /opt/maven
 ENV GRADLE_HOME /opt/gradle
 ENV PATH $MAVEN_HOME/bin:$GRADLE_HOME/bin:$PATH
